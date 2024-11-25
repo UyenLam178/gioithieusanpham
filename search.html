@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm kiếm</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="gioithieu.html">Giới thiệu</a></li>
+            <li><a href="sanpham.html">Sản phẩm</a></li>
+            <li><a href="search.html">Tìm kiếm</a></li>
+            <li><a href="gopy.html">Góp ý</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h2>Tìm kiếm sản phẩm</h2>
+    
+    <!-- Form tìm kiếm -->
+    <form action="search.html" method="GET">
+        <input type="text" name="query" placeholder="Nhập tên sản phẩm..." required>
+        <button type="submit">Tìm kiếm</button>
+    </form>
+
+    <!-- Kết quả tìm kiếm (sẽ hiển thị sau khi người dùng tìm kiếm) -->
+    <section class="search-results">
+        <h3>Kết quả tìm kiếm:</h3>
+
+        <div class="product-card">
+            <img src="images/product1.jpg" alt="Sản phẩm 1">
+            <h3>Sản phẩm 1</h3>
+            <p>Giá: 1.000.000 VND</p>
+            <a href="product-detail.html">Xem chi tiết</a>
+        </div>
+
+        <div class="product-card">
+            <img src="images/product2.jpg" alt="Sản phẩm 2">
+            <h3>Sản phẩm 2</h3>
+            <p>Giá: 2.000.000 VND</p>
+            <a href="product-detail.html">Xem chi tiết</a>
+        </div>
+
+        <!-- Nếu không có kết quả tìm kiếm -->
+        <div class="no-results">
+            <p>Không tìm thấy sản phẩm nào phù hợp với từ khóa bạn nhập.</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Công ty XYZ. Tất cả quyền lợi được bảo lưu.</p>
+</footer>
+
+</body>
+</html>

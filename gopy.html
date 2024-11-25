@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Góp ý - Công ty XYZ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="gioithieu.html">Giới thiệu</a></li>
+            <li><a href="sanpham.html">Sản phẩm</a></li>
+            <li><a href="search.html">Tìm kiếm</a></li>
+            <li><a href="dangnhap.html">Đăng nhập</a></li>
+            <li><a href="thongtin.html">Thông tin cá nhân</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h2>Góp ý của bạn</h2>
+
+    <!-- Form Góp Ý -->
+    <form id="feedbackForm">
+        <label for="userName">Tên:</label>
+        <input type="text" id="userName" name="userName" required>
+
+        <label for="userEmail">Email:</label>
+        <input type="email" id="userEmail" name="userEmail" required>
+
+        <label for="feedbackMessage">Góp ý của bạn:</label>
+        <textarea id="feedbackMessage" name="feedbackMessage" rows="4" required></textarea>
+
+        <button type="submit">Gửi góp ý</button>
+    </form>
+
+    <div id="responseMessage" style="display:none; color: green; margin-top: 20px;">
+        <p>Cảm ơn bạn đã gửi góp ý!</p>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Sản phẩm của nhóm B lớp 50.01.CNTT.D</p>
+</footer>
+
+<script>
+    // Lắng nghe sự kiện gửi form
+    document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Ngừng hành động mặc định của form
+
+        // Lấy dữ liệu từ form
+        const userName = document.getElementById('userName').value;
+        const userEmail = document.getElementById('userEmail').value;
+        const feedbackMessage = document.getElementById('feedbackMessage').value;
+
+        // Lưu thông tin góp ý vào localStorage (hoặc có thể gửi đến server nếu có backend)
+        const feedbackData = {
+            name: userName,
+            email: userEmail,
+            message: feedbackMessage
+        };
+
+        // Lưu thông tin góp ý vào localStorage (tạm thời)
+        localStorage.setItem('userFeedback', JSON.stringify(feedbackData));
+
+        // Hiển thị thông báo gửi thành công
+        document.getElementById('responseMessage').style.display = 'block';
+
+        // Xóa form sau khi gửi
+        document.getElementById('feedbackForm').reset();
+    });
+</script>
+
+</body>
+</html>

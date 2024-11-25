@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin cá nhân - Công ty XYZ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="gioithieu.html">Giới thiệu</a></li>
+            <li><a href="sanpham.html">Sản phẩm</a></li>
+            <li><a href="search.html">Tìm kiếm</a></li>
+            <li><a href="gopy.html">Góp ý</a></li>
+            <li><a href="dangnhap.html">Đăng xuất</a></li> <!-- Đăng xuất để quay lại trang đăng nhập -->
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h2>Thông tin cá nhân</h2>
+
+    <!-- Form cho phép người dùng điền và chỉnh sửa thông tin -->
+    <form id="updateForm">
+        <label for="userName">Tên:</label>
+        <input type="text" id="userName" name="userName" required>
+
+        <label for="userEmail">Email:</label>
+        <input type="email" id="userEmail" name="userEmail" required>
+
+        <label for="userPhone">Số điện thoại:</label>
+        <input type="tel" id="userPhone" name="userPhone">
+
+        <button type="submit">Cập nhật thông tin</button>
+    </form>
+
+    <h3>Thông tin đã lưu</h3>
+    <p><strong>Tên:</strong> <span id="displayName"></span></p>
+    <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+    <p><strong>Số điện thoại:</strong> <span id="displayPhone"></span></p>
+</main>
+
+<footer>
+    <p>&copy; 2024 Sản phẩm của nhóm B lớp 50.01.CNTT.D</p>
+</footer>
+
+<script>
+    // Lấy thông tin người dùng từ localStorage khi trang được tải
+    document.addEventListener('DOMContentLoaded', function() {
+        const userName = localStorage.getItem('userName');
+        const userEmail = localStorage.getItem('userEmail');
+        const userPhone = localStorage.getItem('userPhone');
+
+        // Nếu có thông tin đã lưu trong localStorage, hiển thị chúng
+        if (userName && userEmail) {
+            document.getElementById('userName').value = userName;
+            document.getElementById('userEmail').value = userEmail;
+            document.getElementById('userPhone').value = userPhone || ''; // Nếu không có số điện thoại, để trống
+
+            // Hiển thị thông tin đã lưu trong phần bên dưới
+            document.getElementById('displayName').textContent = userName;
+            document.getElementById('displayEmail').textContent = userEmail;
+            document.getElementById('displayPhone').textContent = userPhone || 'Chưa có thông tin';
+        }
+    });
+
+    // Lắng nghe sự kiện submit của form để cập nhật thông tin người dùng
+    document.getElementById('updateForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Ngừng gửi form mặc định
+
+        // Lấy giá trị từ các trường thông tin người dùng
+        const userName = document.getElementById('userName').value;
+        const userEmail = document.getElementById('userEmail').value;
+        const userPhone = document.getElementById('userPhone').value;
+
+        // Lưu thông tin vào localStorage
+        localStorage.setItem('userName', userName);
+        localStorage.setItem('userEmail', userEmail);
+        localStorage.setItem('userPhone', userPhone);
+
+        // Cập nhật lại thông tin hiển thị
+        document.getElementById('displayName').textContent = userName;
+        document.getElementById('displayEmail').textContent = userEmail;
+        document.getElementById('displayPhone').textContent = userPhone || 'Chưa có thông tin';
+        
+        alert("Thông tin của bạn đã được cập nhật!");
+    });
+</script>
+
+</body>
+</html>
