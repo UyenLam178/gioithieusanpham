@@ -88,16 +88,26 @@ form button:hover {
 }
 
 /* Product card styles */
+.product-container {
+    display: flex; /* Sử dụng Flexbox */
+    justify-content: space-between; /* Khoảng cách đều giữa các sản phẩm */
+    flex-wrap:wrap; /* Không cho phép các sản phẩm xuống dòng */
+    width: 100%; /* Đảm bảo container chiếm toàn bộ màn hình */
+    padding: 0px; /* Thêm padding cho container nếu cần */
+    box-sizing:border-box; /* Đảm bảo kích thước bao gồm padding */
+}
+
 .product-card {
-    display: inline-block;
-    width: 30%;
-    margin: 15px;
+    flex: 0 1 calc(100% / 4 - 20px); /* Mỗi sản phẩm chiếm 1/6 chiều rộng */
+    margin: 0 10px; /* Khoảng cách giữa các thẻ sản phẩm */
     background-color: white;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     text-align: center;
+    box-sizing: border-box;
 }
+
 
 .product-card img {
     width: 100%;
