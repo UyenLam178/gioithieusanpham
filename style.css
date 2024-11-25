@@ -9,8 +9,8 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     background-image: url('picture/background.jpg');
-    background-size: cover; /* Đảm bảo hình nền phủ toàn bộ trang */
-    background-position: center center; /* Đặt vị trí hình nền ở giữa trang */
+    background-size:cover; /* Đảm bảo hình nền phủ toàn bộ trang */
+    background-position: center; /* Đặt vị trí hình nền ở giữa trang */
     background-repeat: no-repeat; /* Ngừng lặp lại hình nền */
     color: #333;
 }
