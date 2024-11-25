@@ -3,69 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Đăng Ký</title>
+    <title>Đăng Ký</title>
     <link rel="stylesheet" href="style.css">
-    
 </head>
 <body>
 
-    <div class="register-container">
-        <h1><center>Đăng Ký</center></h1>
-        <form id="registerForm" onsubmit="return handleRegister(event)">
-            <label for="username">Tên người dùng:</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="password">Mật khẩu:</label>
-            <input type="password" id="password" name="password" required>
-
-            <label for="confirmPassword">Xác nhận mật khẩu:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" required>
-
-            <label>
-                <input type="checkbox" onclick="togglePassword()"> <center>Hiển thị mật khẩu</center>
-            </label>
-
-            <button type="submit">Đăng Ký</button>
-        </form>
-        <div class="error-message" id="error-message"></div>
+<main>
+    <h2><center>Đăng Ký</center></h2>
+    
+    <!-- Kiểm tra nếu người dùng đã đăng ký, hiển thị thông báo -->
+    <div id="successMessage" style="display: none; color: green;">
+        <p>Bạn đã đăng ký thành công. Bạn sẽ được chuyển đến trang đăng nhập ngay bây giờ.</p>
     </div>
 
-    <script>
-        function handleRegister(event) {
-            event.preventDefault(); // Ngừng gửi form
+    <!-- Form đăng ký -->
+    <form id="registerForm" style="display: block;">
+        <label for="username">Tên người dùng:</label>
+        <input type="text" id="username" name="username" required><br><br>
 
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" name="password" required><br><br>
 
-            // Kiểm tra nếu mật khẩu và xác nhận mật khẩu khớp
-            if (password !== confirmPassword) {
-                document.getElementById('error-message').textContent = 'Mật khẩu và xác nhận mật khẩu không khớp!';
-                return;
-            }
+        <label for="confirmPassword">Nhập lại mật khẩu:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
 
-            // Lưu thông tin người dùng vào localStorage
-            localStorage.setItem('username', username);
-            localStorage.setItem('password', password);
+        <button type="submit">Đăng ký</button>
+    </form>
+</main>
 
-            // Chuyển hướng đến trang đăng nhập sau khi đăng ký thành công
-            alert('Đăng ký thành công!');
-            window.location.href = 'dangnhap.html'; // Chuyển đến trang đăng nhập
+<footer>
+    <p>&copy; 2024 Sản phẩm của nhóm B lớp 50.01.CNTT.D</p>
+</footer>
+
+<script>
+    // Kiểm tra nếu người dùng đã đăng ký, nếu có thì hiển thị thông báo và ẩn form đăng ký
+    if(localStorage.getItem('isRegistered') === 'true') {
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('registerForm').style.display = 'none';
+        // Chuyển hướng người dùng đến trang đăng nhập sau 3 giây
+        setTimeout(function() {
+            window.location.href = "dangnhap.html";
+        }, 3000); // Chờ 3 giây rồi chuyển hướng
+    }
+
+    // Lắng nghe sự kiện submit form đăng ký
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Ngừng hành động mặc định của form
+
+        // Lấy thông tin từ form
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        // Kiểm tra mật khẩu có khớp không
+        if(password !== confirmPassword) {
+            alert('Mật khẩu không khớp!');
+            return;
         }
 
-        // Hàm chuyển đổi giữa chế độ hiển thị và ẩn mật khẩu
-        function togglePassword() {
-            var passwordField = document.getElementById('password');
-            var confirmPasswordField = document.getElementById('confirmPassword');
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                confirmPasswordField.type = 'text';
-            } else {
-                passwordField.type = 'password';
-                confirmPasswordField.type = 'password';
-            }
-        }
-    </script>
+        // Lưu thông tin đăng ký vào localStorage (hoặc có thể gửi đến server nếu có backend)
+        const userData = {
+            username: username,
+            password: password
+        };
+
+        // Lưu trữ trạng thái đăng ký thành công
+        localStorage.setItem('isRegistered', 'true');
+        localStorage.setItem('userData', JSON.stringify(userData));
+
+        // Hiển thị thông báo đăng ký thành công và ẩn form đăng ký
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('registerForm').style.display = 'none';
+
+        // Chuyển hướng người dùng đến trang đăng nhập
+        setTimeout(function() {
+            window.location.href = "dangnhap.html";
+        }, 3000); // Chờ 3 giây rồi chuyển hướng
+    });
+</script>
 
 </body>
 </html>
