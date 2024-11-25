@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Đăng Ký</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <div class="register-container">
+        <h1><center>Đăng Ký</center></h1>
+        <form id="registerForm" onsubmit="return handleRegister(event)">
+            <label for="username">Tên người dùng:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Mật khẩu:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirmPassword">Xác nhận mật khẩu:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+            <label>
+                <input type="checkbox" onclick="togglePassword()"> <center>Hiển thị mật khẩu</center>
+            </label>
+
+            <button type="submit">Đăng Ký</button>
+        </form>
+        <div class="error-message" id="error-message"></div>
+    </div>
+
+    <script>
+        function handleRegister(event) {
+            event.preventDefault(); // Ngừng gửi form
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Kiểm tra nếu mật khẩu và xác nhận mật khẩu khớp
+            if (password !== confirmPassword) {
+                document.getElementById('error-message').textContent = 'Mật khẩu và xác nhận mật khẩu không khớp!';
+                return;
+            }
+
+            // Lưu thông tin người dùng vào localStorage
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+
+            // Chuyển hướng đến trang đăng nhập sau khi đăng ký thành công
+            alert('Đăng ký thành công!');
+            window.location.href = 'login.html'; // Chuyển đến trang đăng nhập
+        }
+
+        // Hàm chuyển đổi giữa chế độ hiển thị và ẩn mật khẩu
+        function togglePassword() {
+            var passwordField = document.getElementById('password');
+            var confirmPasswordField = document.getElementById('confirmPassword');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                confirmPasswordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+                confirmPasswordField.type = 'password';
+            }
+        }
+    </script>
+
+</body>
+</html>
