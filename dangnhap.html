@@ -3,47 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Đăng Nhập</title>
+    <title>Đăng Nhập</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="login-container">
-        <h1><center>Đăng Nhập</center></h1>
-        <form id="loginForm" onsubmit="return handleLogin(event)">
-            <label for="username">Tên người dùng:</label>
-            <input type="text" id="username" name="username" required>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="dangky.html">Đăng Ký</a></li>
+            <li><a href="dangnhap.html">Đăng Nhập</a></li>
+        </ul>
+    </nav>
+</header>
 
-            <label for="password">Mật khẩu:</label>
-            <input type="password" id="password" name="password" required>
+<main>
+    <h2>Đăng Nhập</h2>
 
-            <button type="submit">Đăng Nhập</button>
-        </form>
-        <div class="error-message" id="error-message"></div>
+    <!-- Form đăng nhập -->
+    <form id="loginForm">
+        <label for="loginUsername">Tên người dùng:</label>
+        <input type="text" id="loginUsername" name="loginUsername" required><br><br>
+
+        <label for="loginPassword">Mật khẩu:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required><br><br>
+
+        <button type="submit">Đăng nhập</button>
+    </form>
+
+    <div id="errorMessage" style="display: none; color: red;">
+        <p>Sai tên đăng nhập hoặc mật khẩu!</p>
     </div>
+</main>
 
-    <script>
-        function handleLogin(event) {
-            event.preventDefault(); // Ngừng gửi form
+<footer>
+    <p>&copy; 2024 Sản phẩm của nhóm B lớp 50.01.CNTT.D</p>
+</footer>
 
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+<script>
+    // Lắng nghe sự kiện khi người dùng gửi form đăng nhập
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Ngừng hành động mặc định của form
 
-            // Lấy thông tin người dùng đã đăng ký từ localStorage
-            const storedUsername = localStorage.getItem('username');
-            const storedPassword = localStorage.getItem('password');
+        // Lấy thông tin từ form đăng nhập
+        const loginUsername = document.getElementById('loginUsername').value;
+        const loginPassword = document.getElementById('loginPassword').value;
 
-            // Kiểm tra tên người dùng và mật khẩu
-            if (username === storedUsername && password === storedPassword) {
-                // Chuyển hướng đến trang chào mừng hoặc trang khác
-                window.location.href = 'trangchu.html'; 
-            } else {
-                document.getElementById('error-message').textContent = 'Tên người dùng hoặc mật khẩu không đúng!';
-            }
+        // Lấy dữ liệu người dùng đã lưu trong localStorage
+        const storedUserData = JSON.parse(localStorage.getItem('userData'));
+
+        // Kiểm tra tên đăng nhập và mật khẩu
+        if (storedUserData && storedUserData.username === loginUsername && storedUserData.password === loginPassword) {
+            // Chuyển hướng đến trang thành công (hoặc trang chủ)
+            window.location.href = "trangchu.html";
+        } else {
+            // Hiển thị thông báo lỗi nếu đăng nhập sai
+            document.getElementById('errorMessage').style.display = 'block';
         }
-    </script>
+    });
+</script>
 
 </body>
 </html>
-
-
