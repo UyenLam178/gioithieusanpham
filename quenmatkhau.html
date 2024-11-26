@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quên Mật Khẩu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main>
+    <h2><center>Quên Mật Khẩu</center></h2>
+
+    <!-- Thông báo reset thành công -->
+    <div id="resetSuccessMessage" style="display: none; color: green;">
+        <p>Mật khẩu của bạn đã được thay đổi thành công. Bạn sẽ được chuyển đến trang đăng nhập ngay bây giờ.</p>
+    </div>
+
+    <!-- Form reset mật khẩu -->
+    <form id="resetForm">
+        <label for="resetUsername">Tên người dùng:</label>
+        <input type="text" id="resetUsername" name="resetUsername" required><br><br>
+
+        <label for="newPassword">Mật khẩu mới:</label>
+        <input type="password" id="newPassword" name="newPassword" required><br><br>
+
+        <label for="confirmNewPassword">Nhập lại mật khẩu mới:</label>
+        <input type="password" id="confirmNewPassword" name="confirmNewPassword" required><br><br>
+
+        <button type="submit">Đặt lại mật khẩu</button>
+    </form>
+</main>
+
+<footer>
+    <p>&copy; 2024 Sản phẩm của nhóm B lớp 50.01.CNTT.D</p>
+</footer>
+
+<script>
+    // Lắng nghe sự kiện submit form reset mật khẩu
+    document.getElementById('resetForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Ngừng hành động mặc định của form
+
+        // Lấy thông tin từ form
+        const resetUsername = document.getElementById('resetUsername').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+
+        // Kiểm tra mật khẩu mới có khớp không
+        if(newPassword !== confirmNewPassword) {
+            alert('Mật khẩu không khớp!');
+            return;
+        }
+
+        // Lấy thông tin người dùng từ localStorage
+        const storedUserData = JSON.parse(localStorage.getItem('userData'));
+
+        // Kiểm tra tên người dùng có tồn tại trong localStorage không
+        if(storedUserData && storedUserData.username === resetUsername) {
+            // Cập nhật mật khẩu mới
+            storedUserData.password = newPassword;
+            localStorage.setItem('userData', JSON.stringify(storedUserData));
+
+            // Hiển thị thông báo reset mật khẩu thành công và ẩn form
+            document.getElementById('resetSuccessMessage').style.display = 'block';
+            document.getElementById('resetForm').style.display = 'none';
+
+            // Chuyển hướng người dùng đến trang đăng nhập sau 3 giây
+            setTimeout(function() {
+                window.location.href = 'dangnhap.html'; // Chuyển hướng đến trang đăng nhập
+            }, 3000); // Chờ 3 giây rồi chuyển hướng
+        } else {
+            alert('Tên người dùng không tồn tại!');
+        }
+    });
+</script>
+
+</body>
+</html>
