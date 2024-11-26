@@ -10,14 +10,9 @@
 
 <main>
     <h2><center>Đăng Ký</center></h2>
-    
-    <!-- Kiểm tra nếu người dùng đã đăng ký, hiển thị thông báo -->
-    <div id="successMessage" style="display: none; color: green;">
-        <p>Bạn đã đăng ký thành công. Bạn sẽ được chuyển đến trang đăng nhập ngay bây giờ.</p>
-    </div>
 
     <!-- Form đăng ký -->
-    <form id="registerForm" style="display: block;">
+    <form id="registerForm" onsubmit="return handleRegister(event)">
         <label for="username">Tên người dùng:</label>
         <input type="text" id="username" name="username" required><br><br>
 
@@ -29,6 +24,7 @@
 
         <button type="submit">Đăng ký</button>
     </form>
+
 </main>
 
 <footer>
@@ -36,17 +32,16 @@
 </footer>
 
 <script>
-    // Lắng nghe sự kiện submit form đăng ký
-    document.getElementById('registerForm').addEventListener('submit', function(event) {
+    // Xử lý form đăng ký
+    function handleRegister(event) {
         event.preventDefault(); // Ngừng hành động mặc định của form
 
-        // Lấy thông tin từ form
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
 
         // Kiểm tra mật khẩu có khớp không
-        if(password !== confirmPassword) {
+        if (password !== confirmPassword) {
             alert('Mật khẩu không khớp!');
             return;
         }
@@ -57,19 +52,13 @@
             password: password
         };
 
-        // Lưu trữ trạng thái đăng ký thành công
-        localStorage.setItem('isRegistered', 'true');
+        // Lưu trữ thông tin người dùng vào localStorage
         localStorage.setItem('userData', JSON.stringify(userData));
 
-        // Hiển thị thông báo đăng ký thành công và ẩn form đăng ký
-        document.getElementById('successMessage').style.display = 'block';
-        document.getElementById('registerForm').style.display = 'none';
-
-        // Chuyển hướng người dùng đến trang đăng nhập
-        setTimeout(function() {
-            window.location.href = "dangnhap.html";
-        }, 3000); // Chờ 3 giây rồi chuyển hướng
-    });
+        // Thông báo thành công và chuyển hướng người dùng đến trang đăng nhập
+        alert('Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.');
+        window.location.href = "dangnhap.html"; // Chuyển hướng đến trang đăng nhập
+    }
 </script>
 
 </body>
