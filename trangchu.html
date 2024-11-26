@@ -5,35 +5,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Chủ - Giới thiệu sản phẩm</title>
     <link rel="stylesheet" href="style.css">
+    <style>       
+        /* CSS cho footer */
+        footer {
+            background-color:black;
+    text-align: center;
+    color:white;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+        }
+
+        footer::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 100px; /* Điều chỉnh chiều cao của background */
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1; /* Đặt hình nền ở phía sau nội dung footer */
+        }
+        body{
+            background-image: url("picture/background.jpg");
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .page{
+            display: flex;
+            margin-left:0;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            list-style: none;
+        }
+        .information{
+            position: relative;
+            font-size: 20px;
+            color:white;
+            text-decoration: none;
+            font-family:sans-serif;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            padding: 0 10px;
+
+        }
+        .information::after{
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            height: 6px;
+            width: 0;
+            background:rgb(24, 87, 206) ;
+            border-radius: 10px;
+            margin-bottom: -10px;
+           left: 0;
+           transition: 0.5s;
+        }
+        .information:hover::after{
+            width: 100%;
+        }
+        .main{
+            width: 75%;
+            margin: auto;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .helo h5{
+            font-size: 40px;
+            color: black;
+            font-weight: 550;
+        }
+        .helo p{
+            margin-bottom: 60px;
+            font-size: 20px;
+            font-weight: 450;
+            font-family: sans-serif;
+        }
+        .helo .button{
+            font-family: sans-serif;
+            background: lightblue;
+            border: 1px solid blue;
+            font-size: 20px;
+            padding: 12px 30px;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            position: relative;
+        }
+        .helo .button::after{
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            height: 6px;
+            width: 0;
+            background:rgb(24, 87, 206) ;
+            border-radius: 10px;
+            margin-bottom: -10px;
+           left: 0;
+           transition: 0.5s;
+        }
+        .helo .button:hover::after{
+            width: 100%;
+        }
+        .mini{
+            width: 450px;
+            height: 450px;
+            right: 0;
+            margin: 0;
+        }
+
+    </style>
 </head>
 <body>
 
 <header>
     <nav>
-        <ul>
-            <li><a href="trangchu.html">Trang Chủ</a></li>
-            <li><a href="gioithieu.html">Giới thiệu</a></li>
-            <li><a href="sanpham.html">Sản phẩm</a></li>
-            <li><a href="search.html">Tìm kiếm</a></li>
-            <li><a href="gopy.html">Góp ý</a></li>
+        <ul class="page">
+            <li><a href="trangchu.html" class="information">Trang Chủ</a></li>
+            <li><a href="gioithieu.html" class="information">Giới thiệu</a></li>
+            <li><a href="sanpham.html" class="information">Sản phẩm</a></li>
+            <li><a href="search.html" class="information">Tìm kiếm</a></li>
+            <li><a href="dangnhap.html" class="information">Đăng nhập</a></li>
+            <li><a href="thongtin.html" class="information">Thông tin cá nhân</a></li>
         </ul>
     </nav>
 </header>
 
-<main>
-    <!-- Nội dung chính của trang sẽ nằm ở đây -->
-</main>
-
-<script>
-    // Kiểm tra nếu người dùng chưa đăng nhập thì chuyển hướng đến trang đăng nhập
-    if (!localStorage.getItem('isLoggedIn')) {
-        window.location.href = 'dangnhap.html'; // Nếu chưa đăng nhập thì chuyển hướng về trang đăng nhập
-    }
-</script>
-
+<div class="main">
+    <div class="helo">
+        <h5>Chào mừng đến với BookStore</h5>
+        <p>Nơi mà bạn có thể chìm vào niềm vui đọc sách và tận hưởng nó</p>
+        <a href="" class="button">Đọc thêm</a>
+    </div>
+    <img src="picture/nha-sach-dep-1-800x534.jpg" class="mini">
+</div>
 <footer>
     <p>&copy; 2024 Sản phẩm của nhóm B lớp 50.01.CNTT.D</p>
 </footer>
-
 </body>
 </html>
