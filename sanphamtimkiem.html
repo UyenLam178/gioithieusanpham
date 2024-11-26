@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="trangchu.html" class="information">Trang Chủ</a></li>
+            <li><a href="gioithieu.html" class="information">Giới thiệu</a></li>
+            <li><a href="sanpham.html" class="information">Sản phẩm</a></li>
+            <li><a href="search.html" class="information">Tìm kiếm</a></li>
+            <li><a href="thongtin.html" class="information">Thông tin cá nhân</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h2 style="color: white;">Danh sách sản phẩm</h2>
+    <div class="product-container" id="productList">
+        <!-- Sản phẩm sẽ được hiển thị ở đây -->
+    </div>
+</main>
+<footer>
+    <p>&copy; 2024 Sản phẩm của nhóm B lớp 50.01.CNTT.D</p>
+</footer>
+
+<script>
+    // Lấy tham số tìm kiếm từ URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('query');
+
+    // Danh sách sản phẩm mẫu
+    const products = [
+        { name: "Chuyện con mèo dạy hải âu bay", price: "49.000 VND", image: "picture/1.jpg", link: "https://s.net.vn/GEGe" },
+        { name: "Hồ Điệp Và Kình Ngư", price: "155.000 VND", image: "picture/2.jpg", link: "https://s.net.vn/HTtX" },
+        { name: "Thời gian tươi đẹp", price: "248.000 VND", image: "picture/3.jpg", link: "https://s.net.vn/aE3R" },
+        { name: "Chuyến đi của thanh xuân", price: "69.000 VND", image: "picture/4.jpg", link: "https://s.net.vn/77pD" },
+        { name: "Hoàng tử bé", price: "35.000 VND", image: "picture/5.jpg", link: "https://s.net.vn/TKZ0" },
+        { name: "Góc sân và khoảng trời", price: "54,400 VND", image: "picture/6.jpg", link: "https://s.net.vn/3sg1" },
+        { name: "Sách vẫn là Alice", price: "130.000 VND", image: "picture/7.jpg", link: "https://s.net.vn/larK" },
+        { name: "Tuổi trẻ đáng bao nhiêu", price: "90.000 VND", image: "picture/8.jpg", link: "https://s.net.vn/G4gq" }
+    ];
+
+    // Lọc sản phẩm theo từ khóa tìm kiếm
+    const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    // Hiển thị kết quả tìm kiếm
+    const productListElement = document.getElementById('productList');
+    if (filteredProducts.length > 0) {
+        filteredProducts.forEach(product => {
+            const productCard = document.createElement('div');
+            productCard.classList.add('product-card');
+            productCard.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>Giá: ${product.price}</p>
+                <a href="${product.link}">Xem chi tiết</a>
+            `;
+            productListElement.appendChild(productCard);
+        });
+    } else {
+        productListElement.innerHTML = '<p>Không tìm thấy sản phẩm nào phù hợp.</p>';
+    }
+</script>
+</body>
+</html>
