@@ -19,6 +19,11 @@
 
             <button type="submit">Đăng Nhập</button>
         </form>
+
+        <!-- Liên kết đến trang quên mật khẩu -->
+        <p><center><a href="quenmatkhau.html">Quên mật khẩu?</a></center></p>
+
+        <!-- Thông báo lỗi khi đăng nhập không thành công -->
         <div class="error-message" id="error-message"></div>
     </div>
 
@@ -30,11 +35,10 @@
             const password = document.getElementById('password').value;
 
             // Lấy thông tin người dùng đã đăng ký từ localStorage
-            const storedUsername = localStorage.getItem('username');
-            const storedPassword = localStorage.getItem('password');
+            const storedUserData = JSON.parse(localStorage.getItem('userData'));
 
             // Kiểm tra tên người dùng và mật khẩu
-            if (username === storedUsername && password === storedPassword) {
+            if (storedUserData && username === storedUserData.username && password === storedUserData.password) {
                 // Lưu trạng thái đăng nhập vào localStorage
                 localStorage.setItem('isLoggedIn', 'true');
                 // Chuyển hướng đến trang chủ
@@ -44,7 +48,6 @@
             }
         }
     </script>
-    <p><a href="quenmatkhau.html"><center>Quên mật khẩu?</center></a></p>
 
 </body>
 </html>
