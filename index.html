@@ -36,16 +36,6 @@
 </footer>
 
 <script>
-    // Kiểm tra nếu người dùng đã đăng ký, nếu có thì hiển thị thông báo và ẩn form đăng ký
-    if(localStorage.getItem('isRegistered') === 'true') {
-        document.getElementById('successMessage').style.display = 'block';
-        document.getElementById('registerForm').style.display = 'none';
-        // Chuyển hướng người dùng đến trang đăng nhập sau 3 giây
-        setTimeout(function() {
-            window.location.href = "dangnhap.html";
-        }, 3000); // Chờ 3 giây rồi chuyển hướng
-    }
-
     // Lắng nghe sự kiện submit form đăng ký
     document.getElementById('registerForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Ngừng hành động mặc định của form
@@ -61,7 +51,7 @@
             return;
         }
 
-        // Lưu thông tin đăng ký vào localStorage (hoặc có thể gửi đến server nếu có backend)
+        // Lưu thông tin đăng ký vào localStorage
         const userData = {
             username: username,
             password: password
