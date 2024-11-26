@@ -5,7 +5,6 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
-
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -16,29 +15,24 @@ body {
     background-attachment: fixed; 
     color: #333;
 }
-
 header {
     background-color: #333;
     color: white;
     padding: 10px 0;
     text-align: center;
 }
-
 header nav ul {
     list-style-type: none;
 }
-
 header nav ul li {
     display: inline;
     margin-right: 20px;
 }
-
 header nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 18px;
 }
-
 footer {
     background-color: #3333;
     text-align: center;
@@ -48,13 +42,11 @@ footer {
     width: 100%;
     bottom: 0;
 }
-
 main {
     padding: 20px;
     max-width: 800px;
     margin: 0 auto;
 }
-
 /* Form styles for the login page */
 form {
     max-width: 400px;
@@ -64,12 +56,10 @@ form {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 form label {
     display: block;
     margin: 10px 0 5px;
 }
-
 form input, form textarea {
     width: 100%;
     padding: 10px;
@@ -77,7 +67,6 @@ form input, form textarea {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
 form button {
     width: 100%;
     padding: 10px;
@@ -87,11 +76,9 @@ form button {
     border-radius: 4px;
     cursor: pointer;
 }
-
 form button:hover {
     background-color: #555;
 }
-
 /* Product card styles */
 .product-container {
     display: flex; /* Sử dụng Flexbox */
@@ -101,7 +88,6 @@ form button:hover {
     padding: 0px; /* Thêm padding cho container nếu cần */
     box-sizing:border-box; /* Đảm bảo kích thước bao gồm padding */
 }
-
 .product-card {
     flex: 0 1 calc(100% / 4 - 20px); /* Mỗi sản phẩm chiếm 1/6 chiều rộng */
     margin: 0 10px; /* Khoảng cách giữa các thẻ sản phẩm */
@@ -112,18 +98,14 @@ form button:hover {
     text-align: center;
     box-sizing: border-box;
 }
-
-
 .product-card img {
     width: 100%;
     height: auto;
     border-radius: 8px;
 }
-
 .product-card h3 {
     margin-top: 10px;
 }
-
 .product-card a {
     display: inline-block;
     margin-top: 10px;
@@ -133,11 +115,9 @@ form button:hover {
     text-decoration: none;
     border-radius: 4px;
 }
-
 .product-card a:hover {
     background-color: #555;
 }
-
 /* Thông tin cá nhân */
 #user-info {
     padding: 20px;
@@ -145,15 +125,12 @@ form button:hover {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 #user-info p {
     margin: 10px 0;
 }
-
 #user-info strong {
     font-weight: bold;
 }
-
 /* Form Góp Ý */
 #feedbackForm {
     max-width: 500px;
@@ -163,12 +140,10 @@ form button:hover {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 #feedbackForm label {
     display: block;
     margin: 10px 0 5px;
 }
-
 #feedbackForm input, #feedbackForm textarea {
     width: 100%;
     padding: 10px;
@@ -176,7 +151,6 @@ form button:hover {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
 #feedbackForm button {
     width: 100%;
     padding: 10px;
@@ -186,11 +160,9 @@ form button:hover {
     border-radius: 4px;
     cursor: pointer;
 }
-
 #feedbackForm button:hover {
     background-color: #555;
 }
-
 /* Thông báo sau khi gửi góp ý */
 #responseMessage {
     padding: 10px;
@@ -209,7 +181,6 @@ form button:hover {
     font-size: 15px;
     letter-spacing: 0.5px;
     padding: 0 10px;
-
 }
 .information::after{
     content: "";
